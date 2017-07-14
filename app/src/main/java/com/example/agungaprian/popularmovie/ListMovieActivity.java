@@ -50,7 +50,7 @@ public class ListMovieActivity extends AppCompatActivity {
 
         if (savedInstanceState == null){
             //get data from internet
-            getMoviesFromTMDb(getSortMethod(),"");
+            getMoviesFromTMDb(getSortMethod(),getString(R.string.tmdb_sort_vote_avg_desc));
         }else {
             //get data from local resource
             //get movie object

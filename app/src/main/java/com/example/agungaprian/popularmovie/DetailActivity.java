@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,8 +25,9 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        //getSupportActionBar().setHomeButtonEnabled(true);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView tvOriginalTitle = (TextView) findViewById(R.id.textview_original_title);
         ImageView ivPoster = (ImageView) findViewById(R.id.imageview_poster);
@@ -42,7 +44,7 @@ public class DetailActivity extends AppCompatActivity {
                 .load(movie.getPosterPath())
                 .resize(getResources().getInteger(R.integer.tmdb_poster_w185_width),
                         getResources().getInteger(R.integer.tmdb_poster_w185_height))
-                .error(R.drawable.not_found)
+                .error(R.drawable.example_movie_poster)
                 .placeholder(R.drawable.searching)
                 .into(ivPoster);
 
@@ -69,5 +71,16 @@ public class DetailActivity extends AppCompatActivity {
             releaseDate = getResources().getString(R.string.no_release_date_found);
         }
         tvReleaseDate.setText(releaseDate);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            //respon to action bar's home button
+            case R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -33,6 +33,6 @@
 
     <!-- Error user information -->
     <string name="error_need_internet">There is no internet Connection</string>
-    <string name="key_themoviedb">5dcd6ed59f6311eeeaeb846201f551b6</string>
+    <string name="key_themoviedb">place your api key here</string>
     <string name="splash_screen_tittle">Popular Movie Apps</string>
 </resources>

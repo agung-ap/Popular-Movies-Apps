@@ -50,7 +50,7 @@ public class ListMovieActivity extends AppCompatActivity {
 
         if (savedInstanceState == null){
             //get data from internet
-            getMoviesFromTMDb(getSortMethod());
+            getMoviesFromTMDb(getSortMethod(),"");
         }else {
             //get data from local resource
             //get movie object
@@ -122,12 +122,12 @@ public class ListMovieActivity extends AppCompatActivity {
             case R.string.pref_sort_pop_desc_key:
                 updateSharedPrefs(getString(R.string.tmdb_sort_pop_desc));
                 updateMenu();
-                getMoviesFromTMDb(getSortMethod());
+                getMoviesFromTMDb(getSortMethod(),getString(R.string.tmdb_sort_pop_desc));
                 return true;
             case R.string.pref_sort_vote_avg_desc_key:
                 updateSharedPrefs(getString(R.string.tmdb_sort_vote_avg_desc));
                 updateMenu();
-                getMoviesFromTMDb(getSortMethod());
+                getMoviesFromTMDb(getSortMethod(),getString(R.string.tmdb_sort_vote_avg_desc));
                 return true;
             default:
         }
@@ -159,7 +159,7 @@ public class ListMovieActivity extends AppCompatActivity {
      *
      * @param sortMethod tmdb API method for sorting movies
      */
-    private void getMoviesFromTMDb(String sortMethod) {
+    private void getMoviesFromTMDb(String sortMethod, String params) {
         if (isNetworkAvailable()) {
             // Key needed to get data from TMDb
             String apiKey = getString(R.string.key_themoviedb);
@@ -173,7 +173,7 @@ public class ListMovieActivity extends AppCompatActivity {
             };
 
             // Execute task
-            AsyncTaskFetchData movieTask = new AsyncTaskFetchData(taskCompleted, apiKey);
+            AsyncTaskFetchData movieTask = new AsyncTaskFetchData(taskCompleted, apiKey , params);
             movieTask.execute(sortMethod);
         } else {
             Toast.makeText(this, getString(R.string.error_need_internet), Toast.LENGTH_LONG).show();

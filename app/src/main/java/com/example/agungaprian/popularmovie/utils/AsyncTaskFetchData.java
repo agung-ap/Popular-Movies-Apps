@@ -29,6 +29,8 @@ public class AsyncTaskFetchData extends AsyncTask<String,Void,Movie[]>{
     private final String LOG_TAG = AsyncTaskFetchData.class.getSimpleName();
     //API key
     private final String mApiKey;
+    //URLParameter
+    private String URLParameter;
     //listener
     private final OnTaskCompleted mListener;
 
@@ -38,10 +40,11 @@ public class AsyncTaskFetchData extends AsyncTask<String,Void,Movie[]>{
      * @param apiKey
      */
     @SuppressWarnings("JavaDoc")
-    public AsyncTaskFetchData(OnTaskCompleted listener, String apiKey) {
+    public AsyncTaskFetchData(OnTaskCompleted listener, String apiKey ,String parameter) {
         super();
         mListener = listener;
         mApiKey = apiKey;
+        URLParameter = parameter;
     }
 
     /**
@@ -54,7 +57,7 @@ public class AsyncTaskFetchData extends AsyncTask<String,Void,Movie[]>{
         final String API_KEY_PARAM = "api_key";
 
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                .appendQueryParameter(SORT_BY_PARAMS,parameters[0])
+                .appendQueryParameter(SORT_BY_PARAMS, URLParameter)
                 .appendQueryParameter(API_KEY_PARAM,mApiKey)
                 .build();
         return new URL(builtUri.toString());

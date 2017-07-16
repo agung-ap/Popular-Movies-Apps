@@ -52,12 +52,10 @@ public class AsyncTaskFetchData extends AsyncTask<String,Void,Movie[]>{
      *
      */
     private URL getApiUrl(String [] parameters) throws MalformedURLException {
-        final String BASE_URL = "https://api.themoviedb.org/3/discover/movie?";
-        final String SORT_BY_PARAMS = "sort_by";
+        final String BASE_URL = URLParameter;
         final String API_KEY_PARAM = "api_key";
 
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                .appendQueryParameter(SORT_BY_PARAMS, URLParameter)
                 .appendQueryParameter(API_KEY_PARAM,mApiKey)
                 .build();
         return new URL(builtUri.toString());

@@ -122,7 +122,7 @@ public class Movie implements Parcelable {
      * @return TMDb way of scoring the movie: <score>/10
      */
     public String getDetailedVoteAverage() {
-        return String.valueOf(getVoteAverage()) + "/10";
+        return String.valueOf(getVoteAverage()) + " / 10";
     }
 
     /**

@@ -48,9 +48,10 @@ public class ListMovieActivity extends AppCompatActivity {
         mGridView = (GridView)findViewById(R.id.gridview);
         mGridView.setOnItemClickListener(moviePosterClickListener);
 
+
         if (savedInstanceState == null){
             //get data from internet
-            getMoviesFromTMDb(getSortMethod(),getString(R.string.tmdb_sort_vote_avg_desc));
+            getMoviesFromTMDb(getSortMethod(),"https://api.themoviedb.org/3/movie/popular?");
         }else {
             //get data from local resource
             //get movie object
@@ -122,12 +123,12 @@ public class ListMovieActivity extends AppCompatActivity {
             case R.string.pref_sort_pop_desc_key:
                 updateSharedPrefs(getString(R.string.tmdb_sort_pop_desc));
                 updateMenu();
-                getMoviesFromTMDb(getSortMethod(),getString(R.string.tmdb_sort_pop_desc));
+                getMoviesFromTMDb(getSortMethod(),"https://api.themoviedb.org/3/movie/popular?");
                 return true;
             case R.string.pref_sort_vote_avg_desc_key:
                 updateSharedPrefs(getString(R.string.tmdb_sort_vote_avg_desc));
                 updateMenu();
-                getMoviesFromTMDb(getSortMethod(),getString(R.string.tmdb_sort_vote_avg_desc));
+                getMoviesFromTMDb(getSortMethod(),"https://api.themoviedb.org/3/movie/top_rated?");
                 return true;
             default:
         }
@@ -219,7 +220,7 @@ public class ListMovieActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         return prefs.getString(getString(R.string.pref_sort_method_key),
-                getString(R.string.tmdb_sort_pop_desc));
+                getString(R.string.tmdb_sort_vote_avg_desc));
     }
 
     /**
